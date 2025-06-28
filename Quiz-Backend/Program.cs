@@ -104,6 +104,7 @@ builder.Services.AddTransient<IAttemptorService, AttenderService>();
 builder.Services.AddTransient<IAttemptService, AttemptService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IQuizService, QuizService>();
+builder.Services.AddTransient<ITransactionalQuizService, TransactionalQuizService>();
 #endregion
 
 var app = builder.Build();

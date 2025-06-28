@@ -9,16 +9,19 @@ public class QuizService : IQuizService
 {
     private readonly IRepository<string, QuizData> _quizRepository;
     private readonly IRepository<Guid, Question> _questionRepository;
+    private readonly ITransactionalQuizService _transactionalQuizService;
     QuestionsMapper questionsMapper;
     QuizMapper quizMapper;
     QuestionResMapper questionResMapper;
     public QuizService(
         IRepository<string, QuizData> quizRepository,
-        IRepository<Guid, Question> questionRepository
+        IRepository<Guid, Question> questionRepository,
+        ITransactionalQuizService transactionalQuizService
     )
     {
         _quizRepository = quizRepository;
         _questionRepository = questionRepository;
+        _transactionalQuizService = transactionalQuizService;
         questionsMapper = new QuestionsMapper();
         quizMapper = new QuizMapper();
         questionResMapper = new QuestionResMapper();
@@ -29,23 +32,25 @@ public class QuizService : IQuizService
         try
         {
 
-            var quizData = quizMapper.MapToQuiz(quizAddDto);
+            // var quizData = quizMapper.MapToQuiz(quizAddDto);
 
 
-            var savedQuiz = await _quizRepository.Add(quizData);
+            // var savedQuiz = await _quizRepository.Add(quizData);
 
 
-            if (quizAddDto.questions != null && quizAddDto.questions.Any())
-            {
-                foreach (var questionDto in quizAddDto.questions)
-                {
-                    var question = questionsMapper.MaptoQuestion(questionDto, savedQuiz.Id);
-                    await _questionRepository.Add(question);
-                }
-            }
+            // if (quizAddDto.questions != null && quizAddDto.questions.Any())
+            // {
+            //     foreach (var questionDto in quizAddDto.questions)
+            //     {
+            //         var question = questionsMapper.MaptoQuestion(questionDto, savedQuiz.Id);
+            //         await _questionRepository.Add(question);
+            //     }
+            // }
 
 
-            var response = questionResMapper.MapToResponse(savedQuiz);
+            // var response = questionResMapper.MapToResponse(savedQuiz);
+            // return response;
+            var response = await _transactionalQuizService.AddQuiz(quizAddDto);
             return response;
         }
         catch (Exception ex)
