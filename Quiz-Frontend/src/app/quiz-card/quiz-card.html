@@ -1,0 +1,87 @@
+<div class="card">
+  <div class="header-details">
+    <div class="avatar-name-container">
+      <div>
+        <h2>{{ quiz.title }}</h2>
+        <p>{{ getCategoryName(quiz.categoryId) || 'Uncategorized' }}</p>
+      </div>
+      <div class="avatar-section">
+        <div
+          class="company-avatar"
+          [ngStyle]="{ background: getRandomGradient() }"
+        >
+          {{ quiz.title?.[0] || '?' }}
+        </div>
+      </div>
+    </div>
+
+    <div class="additional-details">
+      <div class="detail-item">
+        <strong>Duration:</strong> {{ quiz.durationMinutes }} mins
+      </div>
+      <span class="divider">|</span>
+      <div class="detail-item">
+        <strong>Questions:</strong> {{ quiz.questions?.length || 0 }}
+      </div>
+      <span class="divider">|</span>
+      <div class="detail-item">
+        <strong>Created:</strong> {{ quiz.createdAt |date:'medium' }}
+      </div>
+    </div>
+    @if(!checkAttempt) {
+    <div class="take-quiz-actions">
+      @if(adminView){
+      <button class="take-quiz-btn" (click)="viewAttempts()">
+        View User Attempts
+      </button>
+      } @else{
+      <button class="take-quiz-btn" (click)="openTakeQuizPopup($event, quiz)">
+        Take Quiz
+      </button>
+      }
+    </div>
+
+    } @else {
+    <div class="take-quiz-actions">
+      <div class="chip">
+        <p>Completed</p>
+      </div>
+    </div>
+
+    }
+
+    <div class="apply-details">
+      <div class="detail-item">
+        <strong>Description:</strong> {{ quiz.description }}
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="quiz-popup-backdrop"
+  *ngIf="selectedQuizForModal"
+  (click)="closeTakeQuizPopup()"
+>
+  <div class="quiz-popup" (click)="$event.stopPropagation()">
+    <h2>{{ selectedQuizForModal.title }}</h2>
+    <h4>
+      <strong>Category:</strong> {{
+      getCategoryName(selectedQuizForModal.categoryId) || 'Uncategorized' }}
+    </h4>
+    <h4>
+      <strong>Duration:</strong> {{ selectedQuizForModal.durationMinutes }}
+      minutes
+    </h4>
+    <h4>
+      <strong>Total Questions:</strong> {{
+      selectedQuizForModal.questions?.length || 0 }}
+    </h4>
+    <button
+      class="confirm-btn"
+      (click)="confirmTakeQuiz(selectedQuizForModal.id)"
+    >
+      Take Test
+    </button>
+    <button class="cancel-btn" (click)="closeTakeQuizPopup()">Cancel</button>
+  </div>
+</div>

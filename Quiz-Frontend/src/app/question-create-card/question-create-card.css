@@ -1,0 +1,58 @@
+.question-card {
+background: linear-gradient(135deg, #0a283d, #1854af);
+  color: white;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.question-card h2 {
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.next-btn {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s;
+}
+
+.next-btn:hover {
+  background-color: #bababa;
+  color: #004080;
+}

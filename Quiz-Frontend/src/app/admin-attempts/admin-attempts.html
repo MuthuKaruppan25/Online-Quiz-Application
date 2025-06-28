@@ -1,0 +1,14 @@
+<div class="admin-attempts-container">
+  <h1>Attempts for: {{ quiz.title }}</h1>
+  <p class="description">{{ quiz.description }}</p>
+
+  <div class="attempts-list">
+    <ng-container *ngFor="let attempt of attempts">
+      <app-history-card [attempt]="attempt"></app-history-card>
+    </ng-container>
+    <div *ngIf="isLoading" class="loading">Loading more…</div>
+    <div *ngIf="!isLoading && attempts.length === 0" class="no-data">
+      No attempts yet.
+    </div>
+  </div>
+</div>

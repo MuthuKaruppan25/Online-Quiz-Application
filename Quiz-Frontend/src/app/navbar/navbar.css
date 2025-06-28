@@ -1,0 +1,23 @@
+.nav{
+    display: flex;
+    width: 100%;
+    
+    align-items: center;
+    justify-content: center;
+      background: #004080;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+  border: 1px solid #003366;
+
+}
+
+.logo {
+  font-size: 1.8rem;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+
+  padding-left: 10px;
+}

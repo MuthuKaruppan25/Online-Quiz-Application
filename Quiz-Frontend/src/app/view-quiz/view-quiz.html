@@ -1,0 +1,41 @@
+<app-snack-bar [message]="snackMessage" [isSuccess]="snackSuccess"></app-snack-bar>
+<div class="view-quiz-card">
+  <!-- Code entry always on top -->
+  <div class="flex-row">
+    <div class="field">
+      <label>Enter Quiz Code</label>
+      <input
+        type="text"
+        [(ngModel)]="quizCode"
+        placeholder="Enter quiz code..."
+        class="inline-input"
+      />
+    </div>
+    <button class="submit-btn" (click)="searchQuizByCode()">Submit</button>
+  </div>
+
+  <!-- Category search below -->
+  <div class="field">
+    <label>Search Category</label>
+    <input
+      type="text"
+      [(ngModel)]="categorySearch"
+      (input)="filterCategories()"
+      placeholder="Type to search..."
+      class="inline-input"
+    />
+    <ul class="suggestions" *ngIf="filteredCategories.length > 0">
+      <li
+        *ngFor="let cat of filteredCategories"
+        (click)="selectCategory(cat)"
+        [class.selected]="selectedCategory === cat"
+      >
+        {{ cat.name }}
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="quiz-section" *ngFor="let quiz of quizData">
+    <app-quiz-card [categories]="categories" [quiz]="quiz" ></app-quiz-card>
+    <br>
+</div>

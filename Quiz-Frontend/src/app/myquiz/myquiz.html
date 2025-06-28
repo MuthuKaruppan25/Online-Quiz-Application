@@ -1,0 +1,10 @@
+<div class="myquiz-container">
+  <app-quiz-card
+    *ngFor="let quiz of quizzes"
+    [quiz]="quiz"
+    [adminView]="true"
+    [categories]="categories"
+  ></app-quiz-card>
+</div>
+
+<div class="loading" *ngIf="isLoading">Loading...</div>

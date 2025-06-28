@@ -1,0 +1,107 @@
+<aside class="modern-sidebar desktop-only">
+  <nav>
+    <div class="logo">
+        <lucide-icon [img]="open" size="30" >
+
+        </lucide-icon><p>Quizta</p>
+    </div>
+    <ul>
+      <!-- Admin Sidebar -->
+      <ng-container *ngIf="role === 'admin'">
+        <li >
+          <a routerLink="admin/dashboard" routerLinkActive="active">
+            <lucide-icon [img]="dashboard" size="20" strokeWidth="10"></lucide-icon>
+            <span>Home</span>
+          </a>
+        </li>
+        <li >
+          <a routerLink="create" routerLinkActive="active">
+            <lucide-icon [img]="file" size="20"></lucide-icon>
+            <span>Create Quiz</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="myQuiz" routerLinkActive="active">
+            <lucide-icon [img]="list" size="20"></lucide-icon>
+            <span>My Quizzes</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="user/profile" routerLinkActive="active">
+            <lucide-icon [img]="user" size="20"></lucide-icon>
+            <span>Profile</span>
+          </a>
+        </li>
+      </ng-container>
+
+      <!-- User Sidebar -->
+      <ng-container *ngIf="role === 'user'">
+        <li >
+          <a routerLink="user/dashboard" routerLinkActive="active">
+            <lucide-icon [img]="dashboard" size="20"></lucide-icon>
+            <span>Home</span>
+          </a>
+        </li>
+        <li >
+          <a routerLink="view/quiz" routerLinkActive="active">
+            <lucide-icon [img]="play" size="20"></lucide-icon>
+            <span>Take Quiz</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="view/history" routerLinkActive="active">
+            <lucide-icon [img]="history" size="20"></lucide-icon>
+            <span>History</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="user/profile" routerLinkActive="active">
+            <lucide-icon [img]="user" size="20"></lucide-icon>
+            <span>Profile</span>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </nav>
+</aside>
+
+<!-- Mobile bottom nav -->
+<nav class="bottom-nav mobile-only" *ngIf="role">
+  <ng-container *ngIf="role === 'admin'">
+    <a routerLink="admin/dashboard" routerLinkActive="active">
+      <lucide-icon [img]="dashboard" size="18"></lucide-icon>
+      <span>Home</span>
+    </a>
+    <a routerLink="create" routerLinkActive="active">
+      <lucide-icon [img]="file" size="18"></lucide-icon>
+      <span>Create</span>
+    </a>
+    <a routerLink="myQuiz" routerLinkActive="active">
+      <lucide-icon [img]="list" size="18"></lucide-icon>
+      <span>Quizzes</span>
+    </a>
+    <a routerLink="user/profile" routerLinkActive="active">
+      <lucide-icon [img]="user" size="18"></lucide-icon>
+      <span>Profile</span>
+    </a>
+  </ng-container>
+
+  <ng-container *ngIf="role === 'user'">
+    <a routerLink="user/dashboard" routerLinkActive="active">
+      <lucide-icon [img]="dashboard" size="18"></lucide-icon>
+      <span>Home</span>
+    </a>
+    <a routerLink="view/quiz" routerLinkActive="active">
+      <lucide-icon [img]="play" size="18"></lucide-icon>
+      <span>Take</span>
+    </a>
+    <a routerLink="view/history" routerLinkActive="active">
+      <lucide-icon [img]="history" size="18"></lucide-icon>
+      <span>History</span>
+    </a>
+    <a routerLink="user/profile" routerLinkActive="active">
+      <lucide-icon [img]="user" size="18"></lucide-icon>
+      <span>Profile</span>
+    </a>
+  </ng-container>
+</nav>

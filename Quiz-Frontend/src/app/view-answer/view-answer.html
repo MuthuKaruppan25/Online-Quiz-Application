@@ -1,0 +1,34 @@
+<div class="score-card">
+  <h1>
+    🎉 You scored {{ quizAttempt.score }} / {{ quizData.questions?.length }}
+  </h1>
+  <p>Well done! Here’s a review of your answers:</p>
+</div>
+
+<div class="review-container">
+  <div
+    class="question-review"
+    *ngFor="let ans of quizAttempt.answers"
+    [class.correct]="ans.isCorrect"
+    [class.wrong]="!ans.isCorrect"
+  >
+    <h2>{{ getQuestion(ans.questionId)?.text }}</h2>
+    <p></p>
+    <p>
+      <strong>Your Answer:</strong>
+      {{ ans.selectedOption ? getOptionText(getQuestion(ans.questionId)!,
+      ans.selectedOption) : 'No answer' }}
+    </p>
+    <p>
+      <strong>Correct Answer:</strong>
+      {{ getOptionText( getQuestion(ans.questionId)!,
+      getQuestion(ans.questionId)?.correctOption ) }}
+    </p>
+
+    <div class="explanation">
+      <strong>Explanation:</strong>
+      {{ getQuestion(ans.questionId)?.explanation || 'No explanation available.'
+      }}
+    </div>
+  </div>
+</div>

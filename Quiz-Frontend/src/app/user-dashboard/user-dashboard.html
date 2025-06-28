@@ -1,0 +1,79 @@
+<div class="welcome-card">
+  <div class="welcome-content">
+    <div class="avatar-circle">{{ userData.firstName[0] }}</div>
+    <div class="header-details">
+      <p class="greeting">Welcome back,</p>
+      <h2>{{ userData.firstName }} {{ userData.lastName }}</h2>
+      <p class="sub-text">Hope you have a great learning experience!</p>
+    </div>
+  </div>
+</div>
+
+<div class="stats-card">
+  <h3 class="stats-title">
+    <span class="icon"><lucide-icon [img]="list"></lucide-icon></span>
+    Your Quiz Performance
+  </h3>
+  <div class="stats-info">
+    <div class="info-box" style="border-left: 5px solid #007bff">
+      <span style="color: #007bff" class="icon">
+        <lucide-icon [img]="book"></lucide-icon>
+      </span>
+      <div>
+        <p class="info-label">Quizzes Attempted</p>
+        <h2>{{ totalQuizzes }}</h2>
+      </div>
+    </div>
+    <div class="info-box" style="border-left: 5px solid #ffc107">
+      <span style="color: #ffc107" class="icon">
+        <lucide-icon [img]="layers"></lucide-icon>
+      </span>
+      <div>
+        <p class="info-label">Average Score</p>
+        <h2>{{ averageScore }}%</h2>
+      </div>
+    </div>
+    <div class="info-box" style="border-left: 5px solid #28a745">
+      <span style="color: #28a745" class="icon">
+        <lucide-icon [img]="up"></lucide-icon>
+      </span>
+      <div>
+        <p class="info-label">Above 50%</p>
+        <h2>{{ above50 }}</h2>
+      </div>
+    </div>
+    <div class="info-box" style="border-left: 5px solid #dc3545">
+      <span style="color: #dc3545" class="icon">
+        <lucide-icon [img]="down"></lucide-icon>
+      </span>
+      <div>
+        <p class="info-label">Below 50%</p>
+        <h2>{{ below50 }}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="charts-grid">
+  <!-- Bar Chart -->
+  <div class="chart-card">
+    <h4>Scores per Quiz</h4>
+    <canvas
+      baseChart
+      [data]="scoresBarChartData"
+      [options]="barChartOptions"
+      [type]="'bar'"
+    ></canvas>
+  </div>
+
+  <!-- Pie Chart -->
+  <div class="chart-card">
+    <h4>Attempt Distribution</h4>
+    <canvas
+      baseChart
+      [data]="attemptsPieChartData"
+      [options]="pieChartOptions"
+      [type]="'pie'"
+    ></canvas>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="category-card">
+  <h2>Quiz Configuration</h2>
+
+  <form [formGroup]="categoryForm" (ngSubmit)="onNextClick()">
+    <div class="field">
+      <label>Quiz Title</label>
+      <input type="text" formControlName="title" placeholder="Enter quiz title"/>
+      <div
+        class="error"
+        *ngIf="categoryForm.get('title')?.invalid && categoryForm.get('title')?.touched"
+      >
+        Title is required
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Quiz Description</label>
+      <input
+        type="text"
+        formControlName="description"
+        placeholder="Enter description"
+      />
+      <div
+        class="error"
+        *ngIf="categoryForm.get('description')?.invalid && categoryForm.get('description')?.touched"
+      >
+        Description is required
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Search Categories</label>
+      <input
+        type="text"
+        formControlName="searchTerm"
+        placeholder="Type to search..."
+      />
+      <ul class="suggestions" *ngIf="filteredCategories.length > 0">
+        <li
+          *ngFor="let cat of filteredCategories"
+          [class.selected]="selectedCategory?.guid === cat.guid"
+          (click)="selectCategory(cat)"
+        >
+          {{ cat.name }}
+        </li>
+      </ul>
+      <div
+        class="error"
+        *ngIf="!selectedCategory && categoryForm.get('searchTerm')?.touched"
+      >
+        Please select a category from suggestions
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Total Number of Questions</label>
+      <input type="number" formControlName="totalQuestions" min="1" />
+      <div
+        class="error"
+        *ngIf="
+          categoryForm.get('totalQuestions')?.invalid &&
+          categoryForm.get('totalQuestions')?.touched
+        "
+      >
+        Please enter a valid number of questions (min 5)
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Duration (minutes)</label>
+      <input type="number" formControlName="duration" min="1" />
+      <div
+        class="error"
+        *ngIf="
+          categoryForm.get('duration')?.invalid &&
+          categoryForm.get('duration')?.touched
+        "
+      >
+        Please enter a valid duration (min 10 minute)
+      </div>
+    </div>
+
+    <button class="next-btn" type="submit">Next</button>
+  </form>
+</div>

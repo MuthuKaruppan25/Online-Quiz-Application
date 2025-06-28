@@ -1,0 +1,59 @@
+<app-snack-bar [message]="snackMessage" [isSuccess]="snackSuccess"></app-snack-bar>
+<div class="question-card">
+  <div class="timer">Time Left: {{ timeDisplay }}</div>
+  <h2>
+    Question {{ currentQuestionIndex + 1 }} of {{ quizData.questions?.length }}
+  </h2>
+
+  <div class="field">
+    <label>{{ currentQuestion.text }}</label>
+  </div>
+
+
+  <div class="options">
+    <button
+      type="button"
+      class="option-btn"
+      [class.selected]="selectedOption === 'A'"
+      (click)="selectedOption = 'A'"
+    >
+      A. {{ currentQuestion.optionA }}
+    </button>
+    <button
+      type="button"
+      class="option-btn"
+      [class.selected]="selectedOption === 'B'"
+      (click)="selectedOption = 'B'"
+    >
+      B. {{ currentQuestion.optionB }}
+    </button>
+    <button
+      type="button"
+      class="option-btn"
+      [class.selected]="selectedOption === 'C'"
+      (click)="selectedOption = 'C'"
+    >
+      C. {{ currentQuestion.optionC }}
+    </button>
+    <button
+      type="button"
+      class="option-btn"
+      [class.selected]="selectedOption === 'D'"
+      (click)="selectedOption = 'D'"
+    >
+      D. {{ currentQuestion.optionD }}
+    </button>
+  </div>
+
+  <button class="next-btn" (click)="saveAndNext()">
+    {{ currentQuestionIndex + 1 === quizData.questions?.length ? 'Submit Test' :
+    'Next Question' }}
+  </button>
+</div>
+
+@if(submitted){
+    <div class="view">
+         <button class="view-btn" (click)="viewScore()">View Score</button>
+    </div>
+   
+}

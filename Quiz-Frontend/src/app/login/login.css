@@ -1,0 +1,121 @@
+.landing-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  background-color: #f0f4f8;
+
+}
+
+.side-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.landing-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.landing-component .content {
+  width: 90%;
+  max-width: 500px;
+  text-align: left;
+}
+
+.landing-component h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #004080;
+}
+
+.landing-component form .form-group {
+  margin-bottom: 15px;
+}
+
+.landing-component form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+.landing-component form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.landing-component form button {
+  width: 106%;
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.landing-component form button:hover {
+  background-color: #002d5f;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .landing-page {
+    grid-template-columns: 1fr;
+    padding-bottom:40px ;
+  }
+  .side-img {
+    height: 40vh;
+  }
+  .side-img img {
+    height: 100%;
+  }
+  .landing-component {
+    border-radius: 0;
+    
+    box-shadow: none;
+  }
+  .landing-component .content {
+    width: 80%;
+    padding-right: 20px;
+    text-align: left;
+  }
+}
+.alert {
+  width: 102%;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.success-alert {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error-alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}

@@ -1,0 +1,136 @@
+
+.welcome-card {
+  background: linear-gradient(135deg, #f5f7fa, #e8ecf3);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.welcome-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.avatar-circle {
+  width: 70px;
+  height: 70px;
+  background: #7e57c2;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.4);
+}
+
+.header-details .greeting {
+  font-size: 1rem;
+  color: #5c6bc0;
+  margin: 0;
+}
+
+.header-details h2 {
+  font-size: 1.8rem;
+  margin: 0.2rem 0;
+  color: #212121;
+}
+
+.sub-text {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+
+.stats-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+}
+
+.stats-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stats-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.info-box {
+  flex: 1 1 30%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fafafa;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-2px);
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.info-label {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.info-box h2 {
+  margin: 4px 0 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.charts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* .post{
+  height: 500px;
+  padding: 2rem;
+} */
+.chart-card {
+  flex: 1 1 45%;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.chart-card.full-width {
+  flex: 1 1 100%;
+}
+
+.chart-card h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 600;
+}

@@ -1,0 +1,16 @@
+<div class="landing-page">
+  <div class="side-img">
+    <img src="assets/landing-test.png" alt="Quizta Banner" />
+  </div>
+  <div class="landing-component">
+    <div class="content">
+      <h1>Welcome to Quizta</h1>
+      <label for="role">Select your role:</label>
+      <select id="role" [(ngModel)]="selectedrole" >
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
+      <button (click)="goToLogin()">Next</button>
+    </div>
+  </div>
+</div>

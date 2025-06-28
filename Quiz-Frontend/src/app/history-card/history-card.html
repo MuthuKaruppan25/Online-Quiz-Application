@@ -1,0 +1,38 @@
+<div class="attempt-card" (click)="viewScore()">
+  <div class="attempt-header">
+    <div class="avatar-title">
+      <div
+        class="quiz-avatar"
+        [ngStyle]="{ background: getRandomGradient() }"
+      >
+        {{ attempt.quizData.title[0] }}
+      </div>
+      <div>
+        <h2>{{ attempt.quizData.title }}</h2>
+       
+      </div>
+    </div>
+    <div class="score-badge">
+      {{ attempt.score }} / {{ attempt.quizData.questions?.length || 0 }}
+    </div>
+  </div>
+
+  <div class="attempt-details">
+    <div class="detail">
+      <strong>Questions:</strong> {{ attempt.quizData.questions?.length || 0 }}
+    </div>
+       <span class="divider">|</span>
+    <div class="detail">
+      <strong>Time Taken:</strong> {{ attempt.timeTakenMins }} mins
+    </div>
+       <span class="divider">|</span>
+    <div class="detail">
+      <strong>Attempted At:</strong> {{ attempt.attemptedAt | date:'medium' }}
+    </div>
+  </div>
+      <div class="apply-details">
+      <div class="detail-item">
+        <strong>Description:</strong> {{ attempt.quizData.description }}
+      </div>
+    </div>
+</div>

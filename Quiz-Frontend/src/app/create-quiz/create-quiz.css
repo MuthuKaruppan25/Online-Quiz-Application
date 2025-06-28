@@ -1,0 +1,45 @@
+.welcome-card {
+  background: linear-gradient(135deg, #f5f7fa, #e8ecf3);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.welcome-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.avatar-circle {
+  width: 70px;
+  height: 70px;
+  background: #7e57c2;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.4);
+}
+
+.header-details .greeting {
+  font-size: 1rem;
+  color: #5c6bc0;
+  margin: 0;
+}
+
+.header-details h2 {
+  font-size: 1.8rem;
+  margin: 0.2rem 0;
+  color: #212121;
+}
+
+.sub-text {
+  font-size: 0.95rem;
+  color: #666;
+}

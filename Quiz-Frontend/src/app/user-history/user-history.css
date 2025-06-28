@@ -1,0 +1,19 @@
+.attempts-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  padding: 20px;
+}
+
+.attempt-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+@media (max-width:768px) {
+    .attempts-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 20px;
+}
+}

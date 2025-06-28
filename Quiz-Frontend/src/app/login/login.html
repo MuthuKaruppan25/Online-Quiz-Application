@@ -1,0 +1,63 @@
+<div class="landing-page">
+  <div class="side-img">
+    <img src="assets/landing-test.png" alt="Quizta Banner" />
+  </div>
+  <div class="landing-component">
+    <div class="content">
+      <h1>Login - {{ role | titlecase }}</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="fname">First Name:</label>
+          <input id="fname" formControlName="firstName" />
+          <div
+            class="error"
+            *ngIf="loginForm.get('firstName')?.invalid && loginForm.get('firstName')?.touched"
+          >
+            First name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lname">Last Name:</label>
+          <input id="lname" formControlName="lastName" />
+          <div
+            class="error"
+            *ngIf="loginForm.get('lastName')?.invalid && loginForm.get('lastName')?.touched"
+          >
+            Last name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input id="email" type="email" formControlName="email" />
+          <div
+            class="error"
+            *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          >
+            Valid email is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input id="password" type="password" formControlName="password" />
+          <div
+            class="error"
+            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          >
+            Password is required
+          </div>
+        </div>
+
+        <button type="submit">Login</button>
+                  <div *ngIf="successMessage" class="alert success-alert">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert error-alert">{{ errorMessage }}</div>
+      </form>
+
+    </div>
+
+  </div>
+</div>
