@@ -9,6 +9,7 @@ import { CategoryService } from '../services/CategoryService';
 import { Category } from '../Models/categoryModel';
 import { CommonModule } from '@angular/common';
 import { QuizCard } from "../quiz-card/quiz-card";
+import { FilePlus, LucideAngularModule } from 'lucide-angular';
 
 interface PagedResult<T> {
   totalCount: number;
@@ -21,7 +22,7 @@ interface PagedResult<T> {
 @Component({
   selector: 'app-myquiz',
   standalone: true,
-  imports: [CommonModule, QuizCard],
+  imports: [CommonModule, QuizCard,LucideAngularModule],
   templateUrl: './myquiz.html',
   styleUrl: './myquiz.css'
 })
@@ -31,6 +32,7 @@ export class Myquiz implements OnInit {
   pageSize: number = 10;
   totalPages: number = 1;
   isLoading: boolean = false;
+  readonly file = FilePlus;
 
   adminData!: Admin;
   categories: Category[] = [];

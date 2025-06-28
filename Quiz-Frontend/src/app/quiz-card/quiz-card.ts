@@ -21,25 +21,35 @@ export class QuizCard implements OnInit {
   @Input() categories: Category[] = [];
   @Input() adminView: boolean = false;
   attenderData!: Attender;
-  checkAttempt :boolean = false;
+  checkAttempt: boolean = false;
   selectedQuizForModal: QuizData | null = null;
 
-  constructor(private router: Router, private store: Store,private attemptService:AttemptService) {
-    this.store.select(selectAttenderProfile).subscribe({
-      next: (data: any) => {
-        this.attenderData = data as Attender;
-        console.log(this.attenderData);
-      },
-    });
+  constructor(
+    private router: Router,
+    private store: Store,
+    private attemptService: AttemptService
+  ) {
+    if (!this.adminView) {
+      this.store.select(selectAttenderProfile).subscribe({
+        next: (data: any) => {
+          this.attenderData = data as Attender;
+          console.log(this.attenderData);
+        },
+      });
+    }
   }
 
   ngOnInit(): void {
-        this.attemptService.checkExistingAttempt(this.quiz.id,this.attenderData.guid).subscribe({
-      next:(data:any)=>{
-        this.checkAttempt = data.success;
-        console.log(this.checkAttempt,"attemot");
-      }
-    })
+    if (!this.adminView) {
+      this.attemptService
+        .checkExistingAttempt(this.quiz.id, this.attenderData.guid)
+        .subscribe({
+          next: (data: any) => {
+            this.checkAttempt = data.success;
+            console.log(this.checkAttempt, 'attemot');
+          },
+        });
+    }
   }
   openTakeQuizPopup(event: MouseEvent, quiz: QuizData) {
     event.stopPropagation();

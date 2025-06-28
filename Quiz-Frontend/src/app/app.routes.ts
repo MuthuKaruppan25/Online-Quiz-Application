@@ -15,6 +15,7 @@ import { UserDashboard } from './user-dashboard/user-dashboard';
 import { ProfileUser } from './profile-user/profile-user';
 
 export const routes: Routes = [
+     { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
     component: LandingPage,

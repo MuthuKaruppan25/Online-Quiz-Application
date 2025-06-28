@@ -31,10 +31,10 @@ export class Login {
     private adminService: AdminService
   ) {
     this.loginForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
+      firstName: new FormControl('', [Validators.required,Validators.minLength(4),Validators.maxLength(30)]),
+      lastName: new FormControl('', [Validators.required,Validators.minLength(4),Validators.maxLength(30)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required,Validators.minLength(6),Validators.maxLength(20)]),
     });
   }
 

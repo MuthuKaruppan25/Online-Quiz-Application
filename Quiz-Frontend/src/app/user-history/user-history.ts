@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { selectAttenderProfile } from '../store/User/user.selectors';
 import { CommonModule } from '@angular/common';
 import { HistoryCard } from "../history-card/history-card";
+import { LucideAngularModule,History } from 'lucide-angular';
 
 interface PagedResult<T> {
   totalCount: number;
@@ -19,7 +20,7 @@ interface PagedResult<T> {
 @Component({
   selector: 'app-user-history',
   standalone: true,
-  imports: [CommonModule, HistoryCard],
+  imports: [CommonModule, HistoryCard,LucideAngularModule],
   templateUrl: './user-history.html',
   styleUrl: './user-history.css'
 })
@@ -29,6 +30,7 @@ export class UserHistory implements OnInit {
   pageSize: number = 10;
   totalPages: number = 1;
   isLoading: boolean = false;
+  readonly history = History;
 
   attender!: Attender;
 

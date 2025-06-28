@@ -8,7 +8,11 @@ import { QuizData } from '../Models/QuizDataModel';
 import { pagination } from '../Models/pagination';
 import { QuizCard } from '../quiz-card/quiz-card';
 import { Router } from '@angular/router';
-import { SnackBar } from "../snack-bar/snack-bar";
+import { SnackBar } from '../snack-bar/snack-bar';
+import { AttemptService } from '../services/AttemptService';
+import { Store } from '@ngrx/store';
+import { Attender } from '../Models/UserModel';
+import { selectAttenderProfile } from '../store/User/user.selectors';
 
 interface PagedResult<T> {
   totalCount: number;
@@ -35,7 +39,7 @@ export class ViewQuiz implements OnInit {
   snackMessage: string = '';
   snackSuccess: boolean = true;
   snackVisible: boolean = false;
-
+  attenderData!: Attender;
   pageNumber = 1;
   pageSize = 10;
   totalPages = 1;
@@ -44,8 +48,17 @@ export class ViewQuiz implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private quizService: QuizService,
-    private router:Router
-  ) {}
+    private router: Router,
+    private attemptService: AttemptService,
+    private store: Store
+  ) {
+    this.store.select(selectAttenderProfile).subscribe({
+      next: (data: any) => {
+        this.attenderData = data as Attender;
+        console.log(this.attenderData);
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.loadCategories();
@@ -101,42 +114,103 @@ export class ViewQuiz implements OnInit {
   }
 
   searchQuizByCode() {
-    console.log('Searching for code:', this.quizCode);
-    this.quizService.GetQuizById(this.quizCode).subscribe({
-      next: (data: QuizData) => {
-        if (data) {
-          this.snackMessage = 'Redirecting to test...';
-          this.snackSuccess = true;
-
-          // show the snack
-          this.snackVisible = true;
-          setTimeout(() => {
-            this.snackVisible = false;
-        
-            this.router.navigate(['/dashboard/take/quiz'], {
-              state: { quiz: data },
-            });
-          }, 2000);
-        } else {
-          this.snackMessage = 'No quiz found for this code';
-          this.snackSuccess = false;
-          this.snackVisible = true;
-          setTimeout(() => {
-            this.snackVisible = false;
-          }, 3000);
-        }
-      },
-      error: (err) => {
-        console.error(err);
-        this.snackMessage = 'No Quiz Found';
+  console.log('Searching for code:', this.quizCode);
+  this.quizService.GetQuizById(this.quizCode).subscribe({
+    next: (data: QuizData) => {
+      if (data) {
+        this.attemptService.checkExistingAttempt(data.id, this.attenderData.guid).subscribe({
+          next: (res: any) => {
+            if (res.success === true) {
+              this.snackMessage = 'You have already taken this quiz.';
+              this.snackSuccess = false;
+              this.snackVisible = true;
+              setTimeout(() => {
+                this.snackVisible = false;
+              }, 3000);
+            } else {
+              this.snackMessage = 'Redirecting to test...';
+              this.snackSuccess = true;
+              this.snackVisible = true;
+              setTimeout(() => {
+                this.snackVisible = false;
+                this.router.navigate(['/dashboard/take/quiz'], {
+                  state: { quiz: data },
+                });
+              }, 2000);
+            }
+          },
+          error: (err) => {
+            console.error(err);
+            this.snackMessage = 'Error checking previous attempts';
+            this.snackSuccess = false;
+            this.snackVisible = true;
+            setTimeout(() => {
+              this.snackVisible = false;
+            }, 3000);
+          }
+        });
+      } else {
+        this.snackMessage = 'No quiz found for this code';
         this.snackSuccess = false;
         this.snackVisible = true;
         setTimeout(() => {
           this.snackVisible = false;
         }, 3000);
-      },
-    });
-  }
+      }
+    },
+    error: (err) => {
+      console.error(err);
+      this.snackMessage = 'No Quiz Found';
+      this.snackSuccess = false;
+      this.snackVisible = true;
+      setTimeout(() => {
+        this.snackVisible = false;
+      }, 3000);
+    },
+  });
+}
+
+
+  // searchQuizByCode() {
+  //   console.log('Searching for code:', this.quizCode);
+  //   this.quizService.GetQuizById(this.quizCode).subscribe({
+  //     next: (data: QuizData) => {
+  //       if (data) {
+
+          
+
+  //         this.snackMessage = 'Redirecting to test...';
+  //         this.snackSuccess = true;
+
+  //         // show the snack
+  //         this.snackVisible = true;
+  //         setTimeout(() => {
+  //           this.snackVisible = false;
+
+  //           this.router.navigate(['/dashboard/take/quiz'], {
+  //             state: { quiz: data },
+  //           });
+  //         }, 2000);
+  //       } else {
+  //         this.snackMessage = 'No quiz found for this code';
+  //         this.snackSuccess = false;
+  //         this.snackVisible = true;
+  //         setTimeout(() => {
+  //           this.snackVisible = false;
+  //         }, 3000);
+  //       }
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //       this.snackMessage = 'No Quiz Found';
+  //       this.snackSuccess = false;
+  //       this.snackVisible = true;
+  //       setTimeout(() => {
+  //         this.snackVisible = false;
+  //       }, 3000);
+  //     },
+  //   });
+  // }
 
   @HostListener('window:scroll', [])
   onScroll() {

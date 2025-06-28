@@ -5,6 +5,10 @@
     [adminView]="true"
     [categories]="categories"
   ></app-quiz-card>
+  <div class="no-quiz-card" *ngIf="quizzes.length === 0 && !isLoading">
+    <lucide-icon [img]="file" size="40"></lucide-icon>
+    <p>No quizzes found</p>
+  </div>
 </div>
 
 <div class="loading" *ngIf="isLoading">Loading...</div>

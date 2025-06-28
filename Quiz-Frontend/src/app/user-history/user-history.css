@@ -4,10 +4,35 @@
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   padding: 20px;
 }
+.heading{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    padding-left: 30px;
+}
 
 .attempt-card {
   transition: transform 0.3s, box-shadow 0.3s;
 }
+
+.no-history-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 400px;
+  color: #555;
+  font-size: 1.1rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
 
 @media (max-width:768px) {
     .attempts-grid {
@@ -15,5 +40,9 @@
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   padding: 20px;
+}
+.heading{
+    justify-content: center;
+    padding-left: 0;
 }
 }

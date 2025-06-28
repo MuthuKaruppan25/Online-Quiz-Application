@@ -11,9 +11,17 @@
           <input id="fname" formControlName="firstName" />
           <div
             class="error"
-            *ngIf="loginForm.get('firstName')?.invalid && loginForm.get('firstName')?.touched"
+            *ngIf="loginForm.get('firstName')?.touched && loginForm.get('firstName')?.errors"
           >
-            First name is required
+            <span *ngIf="loginForm.get('firstName')?.hasError('required')"
+              >First name is required</span
+            >
+            <span *ngIf="loginForm.get('firstName')?.hasError('minlength')"
+              >First name must be at least 4 characters</span
+            >
+            <span *ngIf="loginForm.get('firstName')?.hasError('maxlength')"
+              >First name must be at most 30 characters</span
+            >
           </div>
         </div>
 
@@ -22,9 +30,17 @@
           <input id="lname" formControlName="lastName" />
           <div
             class="error"
-            *ngIf="loginForm.get('lastName')?.invalid && loginForm.get('lastName')?.touched"
+            *ngIf="loginForm.get('lastName')?.touched && loginForm.get('lastName')?.errors"
           >
-            Last name is required
+            <span *ngIf="loginForm.get('lastName')?.hasError('required')"
+              >Last name is required</span
+            >
+            <span *ngIf="loginForm.get('lastName')?.hasError('minlength')"
+              >Last name must be at least 4 characters</span
+            >
+            <span *ngIf="loginForm.get('lastName')?.hasError('maxlength')"
+              >Last name must be at most 30 characters</span
+            >
           </div>
         </div>
 
@@ -33,9 +49,14 @@
           <input id="email" type="email" formControlName="email" />
           <div
             class="error"
-            *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+            *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors"
           >
-            Valid email is required
+            <span *ngIf="loginForm.get('email')?.hasError('required')"
+              >Email is required</span
+            >
+            <span *ngIf="loginForm.get('email')?.hasError('email')"
+              >Enter a valid email address</span
+            >
           </div>
         </div>
 
@@ -44,20 +65,28 @@
           <input id="password" type="password" formControlName="password" />
           <div
             class="error"
-            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors"
           >
-            Password is required
+            <span *ngIf="loginForm.get('password')?.hasError('required')"
+              >Password is required</span
+            >
+            <span *ngIf="loginForm.get('password')?.hasError('minlength')"
+              >Password must be at least 6 characters</span
+            >
+            <span *ngIf="loginForm.get('password')?.hasError('maxlength')"
+              >Password must be at most 20 characters</span
+            >
           </div>
         </div>
 
         <button type="submit">Login</button>
-                  <div *ngIf="successMessage" class="alert success-alert">
-      {{ successMessage }}
-    </div>
-    <div *ngIf="errorMessage" class="alert error-alert">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="alert success-alert">
+          {{ successMessage }}
+        </div>
+        <div *ngIf="errorMessage" class="alert error-alert">
+          {{ errorMessage }}
+        </div>
       </form>
-
     </div>
-
   </div>
 </div>

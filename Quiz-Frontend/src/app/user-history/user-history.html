@@ -1,7 +1,18 @@
+<div class="heading">
+  <lucide-icon [img]="history" size="20" strokeWidth="3"></lucide-icon>
+  <h2>User History</h2>
+</div>
+
 <div class="attempts-grid">
   <app-history-card
     *ngFor="let attempt of attemptsList"
     [attempt]="attempt"
     class="attempt-card"
   ></app-history-card>
+
+  <!-- no history fallback -->
+  <div class="no-history-card" *ngIf="attemptsList.length === 0">
+    <lucide-icon [img]="history" size="40"></lucide-icon>
+    <p>No history found</p>
+  </div>
 </div>
